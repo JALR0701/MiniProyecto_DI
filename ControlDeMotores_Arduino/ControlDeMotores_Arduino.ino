@@ -1,3 +1,5 @@
+#include <Servo.h>
+
 #define IN1  13
 #define IN2  12
 #define IN3  8
@@ -18,9 +20,17 @@ int Paso [ 8 ][ 4 ] =
   {1, 0, 0, 1}
 };
 
-int steps_left = 4095;
 boolean Direction = true;
-int Steps = 100;                       // Define el paso actual de la secuencia
+int Steps = 0;
+
+Servo servoMotor1;
+int angulo1 = 0;
+Servo servoMotor2;
+int angulo2 = 0;
+Servo servoMotor3;
+int angulo3 = 0;
+Servo servoMotor4;
+int angulo4 = 0;
 
 void setup()
 {
@@ -31,6 +41,14 @@ void setup()
   pinMode(IN4, OUTPUT);
   pinMode(der, OUTPUT);
   pinMode(izq, OUTPUT);
+  servoMotor1.attach(11);
+  servoMotor1.write(0);
+  servoMotor2.attach(10);
+  servoMotor2.write(0);
+  servoMotor3.attach(9);
+  servoMotor3.write(0);
+  servoMotor4.attach(6);
+  servoMotor4.write(0);
 }
 
 void loop()
@@ -51,9 +69,38 @@ void loop()
     Direction = false;
     stepper();
   }else if(action == B00000101){
-    
-  }
-  else{
+    angulo1++;
+    servoMotor1.write(angulo1);
+    delay(20);
+  }else if(action == B00000110){
+    angulo1--;
+    servoMotor1.write(angulo1);
+    delay(20);
+  }else if(action == B00000111){
+    angulo2++;
+    servoMotor2.write(angulo2);
+    delay(20);
+  }else if(action == B00001000){
+    angulo2--;
+    servoMotor2.write(angulo2);
+    delay(20);
+  }else if(action == B00001001){
+    angulo3++;
+    servoMotor3.write(angulo3);
+    delay(20);
+  }else if(action == B00001010){
+    angulo3--;
+    servoMotor3.write(angulo3);
+    delay(20);
+  }else if(action == B00001011){
+    angulo4++;
+    servoMotor4.write(angulo4);
+    delay(20);
+  }else if(action == B00001100){
+    angulo4--;
+    servoMotor4.write(angulo4);
+    delay(20);
+  }else{
     digitalWrite(der, LOW);
     digitalWrite(izq, LOW);
   }
