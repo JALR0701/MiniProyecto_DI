@@ -38,7 +38,11 @@ com = tk.Label(Main, text = "COM:" + numero, bg = "black", fg = "white", font = 
 com.pack()
 
 data.write(struct.pack('>B',0))
-presionado = True
+presionado = False
+
+#############################################################
+##########Decalracion de funciones para los botones##########
+#############################################################
 
 def parar (e):
     global presionado
@@ -68,6 +72,58 @@ def girarStepIzq ():
     while (presionado):
         data.write(struct.pack('>B',4))
 
+def elevarE1 ():
+    global presionado
+    presionado = True
+    while (presionado):
+        data.write(struct.pack('>B',5))
+
+def bajarE1 ():
+    global presionado
+    presionado = True
+    while (presionado):
+        data.write(struct.pack('>B',6))
+
+def elevarE2 ():
+    global presionado
+    presionado = True
+    while (presionado):
+        data.write(struct.pack('>B',7))
+
+def bajarE2 ():
+    global presionado
+    presionado = True
+    while (presionado):
+        data.write(struct.pack('>B',8))
+
+def elevarE3 ():
+    global presionado
+    presionado = True
+    while (presionado):
+        data.write(struct.pack('>B',9))
+
+def bajarE3 ():
+    global presionado
+    presionado = True
+    while (presionado):
+        data.write(struct.pack('>B',10))
+
+def elevarE4 ():
+    global presionado
+    presionado = True
+    while (presionado):
+        data.write(struct.pack('>B',11))
+
+def bajarE4 ():
+    global presionado
+    presionado = True
+    while (presionado):
+        data.write(struct.pack('>B',12))
+
+#############################################################
+###Declaracion de imagenes y posicionamiento de las mismas###
+#############################################################
+        
 Brazo = Image.open("Brazo.png")
 Brazo=Brazo.resize((300,200))
 Brazo = ImageTk.PhotoImage(Brazo)
@@ -131,6 +187,10 @@ cerrar = Image.open("Cerrar.png")
 cerrar = cerrar.resize((150,50))
 cerrar = ImageTk.PhotoImage(cerrar)
 
+#############################################################
+###Declaracion de botones y posicionamiento de los mismos####
+#############################################################
+
 izqBase = tk.Button(Main, image = giroIzq)
 izqBase.place(x = 100, y = 550)
 izqBase.bind('<Button-1>',lambda e: Thread(target=girarStepIzq, daemon=True).start())
@@ -143,15 +203,23 @@ derBase.bind('<ButtonRelease-1>',parar)
 
 arribaE1 = tk.Button(Main, image = arriba)
 arribaE1.place(x = 400, y = 550)
+arribaE1.bind('<Button-1>',lambda e: Thread(target=elevarE1, daemon=True).start())
+arribaE1.bind('<ButtonRelease-1>',parar)
 
 abajoE1 = tk.Button(Main, image = abajo)
 abajoE1.place(x = 400, y = 650)
+abajoE1.bind('<Button-1>',lambda e: Thread(target=bajarE1, daemon=True).start())
+abajoE1.bind('<ButtonRelease-1>',parar)
 
 arribaE2 = tk.Button(Main, image = arriba)
 arribaE2.place(x = 875, y = 550)
+arribaE2.bind('<Button-1>',lambda e: Thread(target=elevarE2, daemon=True).start())
+arribaE2.bind('<ButtonRelease-1>',parar)
 
 abajoE2 = tk.Button(Main, image = abajo)
 abajoE2.place(x = 875, y = 650)
+abajoE2.bind('<Button-1>',lambda e: Thread(target=bajarE2, daemon=True).start())
+abajoE2.bind('<ButtonRelease-1>',parar)
 
 izqGarra = tk.Button(Main, image = giroIzq)
 izqGarra.place(x = 1300, y = 550)
@@ -165,14 +233,22 @@ derGarra.bind('<ButtonRelease-1>',parar)
 
 arribaGarra = tk.Button(Main, image = arriba)
 arribaGarra.place(x = 1650, y = 550)
+arribaGarra.bind('<Button-1>',lambda e: Thread(target=elevarE3, daemon=True).start())
+arribaGarra.bind('<ButtonRelease-1>',parar)
 
 abajoGarra = tk.Button(Main, image = abajo)
 abajoGarra.place(x = 1650, y = 650)
+abajoGarra.bind('<Button-1>',lambda e: Thread(target=bajarE3, daemon=True).start())
+abajoGarra.bind('<ButtonRelease-1>',parar)
 
 abrirGarra = tk.Button(Main, image = abrir)
 abrirGarra.place(x = 1075, y = 825)
+abrirGarra.bind('<Button-1>',lambda e: Thread(target=elevarE4, daemon=True).start())
+abrirGarra.bind('<ButtonRelease-1>',parar)
 
 cerrarGarra = tk.Button(Main, image = cerrar)
 cerrarGarra.place(x = 1075, y = 925)
+cerrarGarra.bind('<Button-1>',lambda e: Thread(target=bajarE4, daemon=True).start())
+cerrarGarra.bind('<ButtonRelease-1>',parar)
 
 Main.mainloop()

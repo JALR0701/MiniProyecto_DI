@@ -54,49 +54,49 @@ void setup()
 void loop()
 {
   action = Serial.read();
-  if(action == B00000001){
+  if(action == 1){
     digitalWrite(der, HIGH);
     digitalWrite(izq, LOW);
     //Serial.write(1);
-  }else if(action == B00000010){
+  }else if(action == 2){
     digitalWrite(izq, HIGH);
     digitalWrite(der, LOW);
     //Serial.write(0);
-  }else if(action == B00000011){
+  }else if(action == 3){
     Direction = true;
     stepper();
-  }else if(action == B00000100){
+  }else if(action == 4){
     Direction = false;
     stepper();
-  }else if(action == B00000101){
+  }else if(action == 5){
     angulo1++;
     servoMotor1.write(angulo1);
     delay(20);
-  }else if(action == B00000110){
+  }else if(action == 6){
     angulo1--;
     servoMotor1.write(angulo1);
     delay(20);
-  }else if(action == B00000111){
+  }else if(action == 7){
     angulo2++;
     servoMotor2.write(angulo2);
     delay(20);
-  }else if(action == B00001000){
+  }else if(action == 8){
     angulo2--;
     servoMotor2.write(angulo2);
     delay(20);
-  }else if(action == B00001001){
+  }else if(action == 9){
     angulo3++;
     servoMotor3.write(angulo3);
     delay(20);
-  }else if(action == B00001010){
+  }else if(action == 10){
     angulo3--;
     servoMotor3.write(angulo3);
     delay(20);
-  }else if(action == B00001011){
+  }else if(action == 11){
     angulo4++;
     servoMotor4.write(angulo4);
     delay(20);
-  }else if(action == B00001100){
+  }else if(action == 12){
     angulo4--;
     servoMotor4.write(angulo4);
     delay(20);
